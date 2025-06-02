@@ -6,6 +6,7 @@ module.exports = {
     return Promise.all([ 
       queryInterface.bulkDelete('Articles', null, {}),
       queryInterface.bulkInsert('Articles', [{ 
+        id:1,
         name: 'Introduction to Ashtanga', 
         slug: 'introduction-to-ashtanga', 
         image: 'ashtanga.jpg', 
@@ -16,6 +17,7 @@ module.exports = {
         updatedAt: new Date() 
       }]), 
       queryInterface.bulkInsert('Articles', [{ 
+        id: 2,
         name: 'Morning vinyasa flow routine', 
         slug: 'morning-vinyasa-flow-routine', 
         image: 'morning.jpg', 
@@ -26,6 +28,7 @@ module.exports = {
         updatedAt: new Date() 
       }]), 
       queryInterface.bulkInsert('Articles', [{ 
+        id: 3,
         name: 'Secrets of a yoga teacher', 
         slug: 'secrets-of-a-yoga-teacher', 
         image: 'yoga-teacher.jpg',
