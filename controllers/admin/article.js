@@ -39,7 +39,6 @@ const updateArticle = (req, res) => {
   })
     .then((article) => {
       if (!article) {
-        // Lõpeta kohe
         return Promise.reject({ code: 404, message: "Article not found" });
       }
 
@@ -49,7 +48,6 @@ const updateArticle = (req, res) => {
       return res.status(200).json({ message: "Article updated", updatedArticle });
     })
     .catch((error) => {
-      // Kui erroril on kood (nt 404 rejectist), kasuta seda
       const statusCode = error.code || 500;
       const message = error.message || "Failed to update";
 
