@@ -31,7 +31,32 @@ const createArticle = (req, res) => {
     });
 };
 
+const updateArticle = (req, res) => {
+  const { name, slug, image, body } = req.body;
 
+  models.Article.findOne({
+    where: { id: req.params.id },
+  })
+    .then((article) => {
+      if (!article) {
+        // Lõpeta kohe
+        return Promise.reject({ code: 404, message: "Article not found" });
+      }
+
+      return article.update({ name, slug, image, body });
+    })
+    .then((updatedArticle) => {
+      return res.status(200).json({ message: "Article updated", updatedArticle });
+    })
+    .catch((error) => {
+      // Kui erroril on kood (nt 404 rejectist), kasuta seda
+      const statusCode = error.code || 500;
+      const message = error.message || "Failed to update";
+
+      console.error(error);
+      return res.status(statusCode).json({ message });
+    });
+};
 
 // export controller functions
-module.exports = { createArticle };
+module.exports = { createArticle, updateArticle };
